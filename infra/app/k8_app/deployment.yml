@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: coco
+  labels:
+    app: coco-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: coco-app 
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: coco-app 
+  spec:
+    imagePullSecrets:
+      - name: dockerhub-credentials
+    containers:
+      - name: coco-container
+        image: ""
+        ports:
+          - containerPort: 3005
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        env:
+          - name: ENVIRONMENT
+            value: "dev"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3005
+          initialDelaySeconds: 15
+          timeoutSeconds: 2
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 3005
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+    serviceAccountName: coco-service
