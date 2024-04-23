@@ -30,3 +30,7 @@ jobs:
           - name: Push Docker image to Docker Hub
             run: |
                 docker push shadowhub/cocomaster:${{ steps.datetime.outputs.tag }}
+
+          - name: Logout from Docker
+            if: always()
+            run: docker logout
