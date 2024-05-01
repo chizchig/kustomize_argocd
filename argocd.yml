@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: coco
+  namespace: argocd
+spec:
+  project: dev
+  source:
+    repoURL: https://github.com/chizchig/kustomize_argocd.git
+    targetRevision: HEAD
+    path: infra/app/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

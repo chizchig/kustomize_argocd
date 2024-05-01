@@ -4,5 +4,5 @@ resources:
   - ../../infra/
 
 replicas:
-  - name: coco
+  - name: ""
     count: 12
