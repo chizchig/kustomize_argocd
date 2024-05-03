@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/chizchig/kustomize_argocd.git
     targetRevision: HEAD
-    path: infra/app/overlays/dev
+    path: infra/app/overlays/dev/
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
