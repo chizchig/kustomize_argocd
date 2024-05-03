@@ -25,6 +25,7 @@ spec:
       containers:
       - name: coco-container
         image: shadowhub/cocomaster
+        imagePullPolicy: Always
         ports:
         - containerPort: 3005
         resources:
