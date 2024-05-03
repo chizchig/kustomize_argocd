@@ -4,7 +4,7 @@ metadata:
   name: coco-application
   namespace: argocd
 spec:
-  project: devo
+  project: default
   source:
     repoURL: https://github.com/chizchig/kustomize_argocd.git
     targetRevision: HEAD
