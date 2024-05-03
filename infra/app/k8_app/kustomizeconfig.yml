@@ -1,0 +1,5 @@
+secretGenerator:
+- name: regcred
+  type: kubernetes.io/dockerconfigjson
+  literals:
+  - .dockerconfigjson=$(echo -n $DOCKER_USERNAME:$DOCKER_PASSWORD | base64)
