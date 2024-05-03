@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment 
+kind: Deployment
 metadata:
   name: coco
   namespace: coco-namespace
@@ -9,7 +9,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: coco-app 
+      app: coco-app
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -18,15 +18,15 @@ spec:
   template:
     metadata:
       labels:
-        app: coco-app 
-  spec:
-    imagePullSecrets:
+        app: coco-app
+    spec:
+      imagePullSecrets:
       - name: dockerhub-credentials
-    containers:
+      containers:
       - name: coco-container
         image: shadowhub/cocomaster
         ports:
-          - containerPort: 3005
+        - containerPort: 3005
         resources:
           limits:
             cpu: 500m
@@ -35,8 +35,8 @@ spec:
             cpu: 100m
             memory: 128Mi
         env:
-          - name: ENVIRONMENT
-            value: "dev"
+        - name: ENVIRONMENT
+          value: "dev"
         livenessProbe:
           httpGet:
             path: /health
@@ -47,6 +47,6 @@ spec:
           httpGet:
             path: /ready
             port: 3005
-            initialDelaySeconds: 5
-            timeoutSeconds: 3
-    serviceAccountName: coco-service
+          initialDelaySeconds: 5
+          timeoutSeconds: 3
+      serviceAccountName: coco-service
