@@ -21,7 +21,7 @@ spec:
         app: coco-app
     spec:
       imagePullSecrets:
-      - name: dockerhub-credentials
+      - name: regcred
       containers:
       - name: coco-container
         image: shadowhub/cocomaster
